@@ -1,0 +1,12 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "public/assets/blog" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/assets/blog"
+collections:
+  - name: "index"
+    label: "Index"
+    folder: "src"
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
