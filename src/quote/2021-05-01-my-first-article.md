@@ -1,5 +1,6 @@
 ---
 layout: quote.njk
-tags: ["quote"]
-line: THAT'S WHAT SHE SAID 👼🏻
+tags:
+  - quote
+line: THAT'S WHAT SHE SAID 👼🏻 -MS
 ---
