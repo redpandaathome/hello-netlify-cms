@@ -22,6 +22,13 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "string"}
       
+  - name: "quote"
+    label: "Quote"
+    folder: "src/quote"
+    create: false
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Line", name: "line", widget: "string"}
 
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI
