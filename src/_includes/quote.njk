@@ -1,4 +1,3 @@
----
-quote: "THAT'S WHAT SHE SAID"
----
-<h5>{{ quote }}</h5>
+{%- for quote in collections.quote -%}
+   <h5>quote: {{ quote.data.line }}</h5>
+{%- endfor -%}
