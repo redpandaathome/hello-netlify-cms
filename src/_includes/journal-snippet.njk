@@ -1,0 +1,11 @@
+<li>
+   <article class="snippet">
+      <img src={{ journal.data.image }} alt={{ journal.data.imageAlt }} class="snippet__image">
+      <h3 class="snippet__title">
+         <a href="{{ journal.url }}">{{ journal.data.title }}</a>
+      </h3>
+      <p class="snippet__meta">by <span>{{ journal.data.author }}</span> on <span>{{ journal.data.date | postDate }}</span></p>
+      <p class="snippet__body">{{ journal.data.description }}</p>
+      <a href="{{ journal.url }}" class="btn btn--primary">Continue Reading</a>
+   </article>
+</li>
