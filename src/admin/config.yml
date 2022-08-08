@@ -23,12 +23,12 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       
   - name: "quote"
-    label: "Quote"
+    label: "Partial - CTA Email Form"
     folder: "src/quote"
     create: false
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Line", name: "line", widget: "string"}
+      - {label: "Partial - CTA Email Form", name: "line", widget: "string"}
 
   - name: "journal"
     label: "Journal"
