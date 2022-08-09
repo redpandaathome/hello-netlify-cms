@@ -1,0 +1,10 @@
+<li>
+   <article class="snippet">
+      <img src={{ product.data.image }} alt={{ product.data.imageAlt }} class="snippet__image">
+      <h3 class="snippet__title">
+         {{ product.data.title }}
+      </h3>
+      <p class="snippet__meta">by <span>{{ product.data.author }}</span> on <span>{{ product.data.date | postDate }}</span></p>
+      <p class="snippet__body">{{ product.data.description }}</p>
+   </article>
+</li>
