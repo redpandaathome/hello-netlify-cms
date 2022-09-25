@@ -33,7 +33,7 @@ collections:
   - name: "journal"
     label: "Journal"
     folder: "src/journal"
-    create: false
+    create: true
     slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
