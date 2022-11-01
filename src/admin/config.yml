@@ -54,9 +54,9 @@ collections:
       - {label: "Author", name: "author", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list", default: ["post"]}
-      - {label: "Featured Image", name: "imageSmall", widget: "image"}
-      - {label: "Featured Image", name: "imageMedium", widget: "image"}
-      - {label: "Featured Image", name: "imageLarge", widget: "image"}
+      - {label: "Featured Image Small", name: "imageSmall", widget: "image"}
+      - {label: "Featured Image Medium", name: "imageMedium", widget: "image"}
+      - {label: "Featured Image Large", name: "imageLarge", widget: "image"}
       - {label: "Image caption", name: "imageAlt", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "product" # Used in routes, e.g., /admin/collections/blog
