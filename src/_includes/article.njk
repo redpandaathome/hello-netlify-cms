@@ -11,7 +11,7 @@ layout: 'base.njk'
          </h1>
          <figure class="main-article__figure">
             {# <img src="{{ image }}" alt="{{ imageAlt }}"> #}
-            <img src="{{imageSmall}}" srcset="{{imageMedium}} 1000w,  {{imageLarge}} 2000w" alt="{{imageAlt}}">
+            <img src="{{imageSmall}}" srcset="{{imageMedium}} 1000w, {{imageLarge}} 2000w" alt="{{imageAlt}}">
 
             <figcaption>
                {{ content | safe }}
