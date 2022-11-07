@@ -22,13 +22,13 @@ async function visitImageDirectories(pathName){
     
     for (const fileName of fileNames) {
       let inputPath = path.join(pathName, d);
-      // let outputPath = path.join("./public/assets", d);
+      let outputPath = path.join("./public/assets", d);
       // console.log('💜💜💜💜💜💜💜outputPath:', outputPath);
       
       let filePath = path.join(inputPath, fileName)
       try {
-        // await processImage(filePath, inputPath, outputPath);
-        await processImage(filePath, inputPath, inputPath);
+        await processImage(filePath, inputPath, outputPath);
+        // await processImage(filePath, inputPath, inputPath);
       } catch (error){
         console.log('error...:', error);
       }
@@ -74,6 +74,20 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
   });
   // eleventyConfig.addShortcode('image', imageShortcode);
+  const markdownIt = require('markdown-it');
+  const markdownItAttributes = require('markdown-it-attrs');
+  eleventyConfig.setLibrary('md', markdownIt().use(markdownItAttributes));
+
+  const imagesResponsiver = require('eleventy-plugin-images-responsiver');
+  const presets = {
+    default: {
+      sizes: '(max-width: 45em) 90vw, 40em',
+      attributes: {
+        loading: 'lazy',
+      },
+    }
+  };
+  eleventyConfig.addPlugin(imagesResponsiver, presets);
   return {
     dir: {
       input: "src",

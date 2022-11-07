@@ -12,6 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-img": "^2.0.1"
+    "@11ty/eleventy-img": "^2.0.1",
+    "eleventy-plugin-images-responsiver": "^1.12.0"
+  },
+  "dependencies": {
+    "markdown-it-attrs": "^4.1.4"
   }
 }
