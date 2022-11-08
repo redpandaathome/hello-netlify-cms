@@ -1,13 +1,6 @@
 <li>
    <article class="snippet">
-      {# <img src={{ post.data.image }} alt={{ post.data.imageAlt }} class="snippet__image"> #}
-      {# <img src="{{post.data.imageSmall}}" srcset="{{post.data.imageMedium}} 560w, {{post.data.imageLarge}} 768w" alt="{{imageAlt}}"> #}
-      <picture>
-         <source srcset="{{post.data.imageLarge}}" media="(min-width: 1200px)" />
-         <source srcset="{{post.data.imageMedium}}" media="(min-width: 580px)" />
-         
-         <img src="{{post.data.imageSmall}}" alt="{{imageAlt}}" />
-      </picture>
+      <img src={{ post.data.image }} alt={{ post.data.imageAlt }} class="snippet__image">
       <h3 class="snippet__title">
          <a href="{{ post.url }}">{{ post.data.title }}</a>
       </h3>

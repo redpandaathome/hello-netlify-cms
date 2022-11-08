@@ -10,14 +10,7 @@ layout: 'base.njk'
             {{ title }}
          </h1>
          <figure class="main-article__figure">
-            {# <img src="{{ image }}" alt="{{ imageAlt }}"> #}
-            {# <img src="{{imageSmall}}" srcset="{{imageMedium}} 1000w, {{imageLarge}} 2000w" alt="{{imageAlt}}"> #}
-            <picture>
-               <source srcset="{{imageLarge}}" media="(min-width: 1200px)" />
-               <source srcset="{{imageMedium}}" media="(min-width: 580px)" />
-               
-               <img src="{{imageSmall}}" alt="{{imageAlt}}" />
-            </picture>
+            <img src="{{ image }}" alt="{{ imageAlt }}">
             <figcaption>
                {{ content | safe }}
             </figcaption>
