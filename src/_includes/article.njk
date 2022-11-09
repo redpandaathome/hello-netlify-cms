@@ -10,8 +10,8 @@ layout: 'base.njk'
             {{ title }}
          </h1>
          <figure class="main-article__figure">
-            {% imageShortCode image, imageAlt %}
-            {# <img src="{{ image }}" alt="{{ imageAlt }}"> #}
+            {# {% imageShortCode image, imageAlt %} #}
+            <img src="{{ image }}" alt="{{ imageAlt }}">
             <figcaption>
                {{ content | safe }}
             </figcaption>
