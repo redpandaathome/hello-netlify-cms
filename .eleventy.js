@@ -25,7 +25,7 @@ module.exports = function (eleventyConfig) {
     return generateImageHtml(metadata, htmlOpts);
   }
 
-  eleventyConfig.addShortcode('image', imageShortcode);  
+  eleventyConfig.addShortcode('imageShortCode', imageShortcode);  
   eleventyConfig.setLibrary('md', markdown)
   return {
     dir: {
