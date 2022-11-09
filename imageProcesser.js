@@ -68,13 +68,15 @@ const imageShortcode = function (
     formats = [null],
     sizes = '100vw'
 ) {
+    console.log('👀 imageShortcode... imgSrc:', imgSrc);
+    
     let { commonPath, src, inputFullPath, outputPath } = getImagePath(imgSrc);
 
     let htmlOpts = getHtmlOpts(path.parse(src).base, alt);
     const imgOpts = getImageOpt(commonPath, outputPath);
     const metadata = processImage(src, imgOpts, inputFullPath);
     let generated = generateImageHtml(metadata, htmlOpts);
-    // console.log('🌻🌻🌻 generatd...:', generated);
+    console.log('🌻🌻🌻 generatd...:', generated);
     return generated
 };
 
