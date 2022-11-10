@@ -4,7 +4,7 @@ const Image = require("@11ty/eleventy-img");
 function getImageOpt(inputPath, outputPath) {
     return {
         widths: [320, 560, 800, 1040],
-        formats: [null], //multiple types like "webp", null will generate <picture>tag in html
+        formats: ["webp", null], //multiple types like "webp", null will generate <picture>tag in html
         urlPath: inputPath, ///assets/blog
         outputDir: outputPath, //public/assets/blog
         filenameFormat: function (id, src, width, format, options) {
