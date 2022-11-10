@@ -3,7 +3,7 @@ title: Product - My Fifth Article
 author: Kevin Powell
 date: 2021-06-15
 tags: ["product", "special"]
-image: /assets/blog/article-5.jpg
+image: /assets/images/uploads/article-5.jpg
 imageAlt: This is a test
 description: LLorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?
 ---
