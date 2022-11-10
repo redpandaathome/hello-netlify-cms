@@ -5,8 +5,8 @@ function getImageOpt(inputPath, outputPath) {
     return {
         widths: [320, 560, 800, 1040],
         formats: ["webp", null], //multiple types like "webp", null will generate <picture>tag in html
-        urlPath: inputPath, ///assets/blog
-        outputDir: outputPath, //public/assets/blog
+        urlPath: inputPath, ///assets/images/uploads
+        outputDir: outputPath, //public/assets/images/uploads
         filenameFormat: function (id, src, width, format, options) {
             const extension = path.extname(src);
             const name = path.basename(src, extension);
