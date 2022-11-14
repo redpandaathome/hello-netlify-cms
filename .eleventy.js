@@ -3,6 +3,12 @@ const path = require("path");
 const markdown = require('markdown-it')()
 const {getImageOpt, processImage, generateImageHtml, getHtmlOpts, getImagePath, imageShortcode} = require('./imageProcesser.js');
 
+(async function myFunc(){
+  await console.log('🤩???????🤩:', );
+  const {sayHi} = await import('./src/hi.mjs')
+  sayHi();
+})();
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/style.css')
   eleventyConfig.addPassthroughCopy('./src/assets')
