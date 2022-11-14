@@ -9,5 +9,23 @@
    <body>
       <!-- Include the script that builds the page and powers Netlify CMS -->
       <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+      <script>
+         const PostPreview = createClass({
+           render: function() {
+             const entry = this.props.entry;
+             console.log('🧡 entry...:', entry);
+             
+             const image = entry.getIn(['data', 'image']);
+             const bg = this.props.getAsset(image);
+             return h('div', {},
+               h('h1', {}, entry.getIn(['data', 'title'])),
+               h('img', {src: bg.toString()}),
+               h('div', {"className": "text"}, this.props.widgetFor('body'))
+             );
+           }
+         });
+       
+         CMS.registerPreviewTemplate("post", PostPreview);
+       </script>
    </body>
 </html>
