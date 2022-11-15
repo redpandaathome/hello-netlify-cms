@@ -5,6 +5,7 @@ backend:
 local_backend: true
 media_folder: "src/assets/images/uploads" # Media files will be stored in the repo under static/images/uploads
 public_folder: "/assets/images/uploads"
+local_backend: true
 collections:
   - name: "home"
     label: "Home"
