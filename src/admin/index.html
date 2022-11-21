@@ -1,33 +1,72 @@
 <!doctype html>
 <html>
-   <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Content Manager</title>
-      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-   </head>
-   <body>
-      <!-- Include the script that builds the page and powers Netlify CMS -->
-      <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-      <script>
-        CMS.registerPreviewStyle("./cms/example.css");
 
-        const PostPreview = createClass({
-          render: function() {
-             const entry = this.props.entry;
-             console.log('🧡 entry...:', entry);
-             
-             const image = entry.getIn(['data', 'image']);
-             const bg = this.props.getAsset(image);
-             return h('div', {},
-               h('h1', {}, entry.getIn(['data', 'title'])),
-               h('img', {src: bg.toString()}),
-               h('div', {"className": "text"}, this.props.widgetFor('body'))
-             );
-           }
-         });
-       
-         CMS.registerPreviewTemplate("blog", PostPreview);
-       </script>
-   </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+
+<body>
+  <!-- Include the script that builds the page and powers Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/showdown@<version>/dist/showdown.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+
+  <script>
+    CMS.registerPreviewStyle("./cms/example.css");
+    var converter = new showdown.Converter()
+
+    const PostPreview = createClass({
+      componentDidUpdate(){
+        const script = document.createElement('script')
+        script.src = ''
+        document.head.appendChild(script)
+      },
+      render: function () {
+        const entry = this.props.entry;
+        let entryArr = [...entry];
+        const image = entry.getIn(['data', 'image']);
+        const bg = this.props.getAsset(image);
+        
+        
+        let title = entry.getIn(['data', 'title']);
+        let imageAlt = 'hohoho'
+        let body = h('div', {"className": "text"}, this.props.widgetFor('body'));
+        // console.log('body...:', entry.getIn(["data"]).toJS().body);
+        
+        
+
+         let htmlBfBody = `<main>
+   <article class="main-article">
+      <div class="container container--narrow flow">
+
+         <h1 class="article-title">
+            ${title}
+         </h1>
+         <figure class="main-article__figure">
+            <img src="${image}" alt="${imageAlt}">
+            <figcaption>`
+
+        let bodyMarkdown = entry.getIn(["data"]).toJS().body;
+        const bodyHtml = converter.makeHtml(bodyMarkdown);
+        console.log('🍑:', bodyHtml);
+
+        let htmlAfBody = `</figcaption>
+         </figure>
+
+      </div>
+   </article>
+</main>`
+        return h('div', {
+          dangerouslySetInnerHTML: { __html: htmlBfBody+bodyHtml+htmlAfBody },
+        })
+      }
+    });
+
+    CMS.registerPreviewTemplate("blog", PostPreview);
+  </script>
+</body>
+
 </html>
