@@ -11,56 +11,49 @@
 <body>
   <!-- Include the script that builds the page and powers Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/showdown@<version>/dist/showdown.min.js"></script> -->
+  <!-- To convert markdown content to html -->
   <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
 
   <script>
     CMS.registerPreviewStyle("./cms/example.css");
-    var converter = new showdown.Converter()
+    const converter = new showdown.Converter()
 
     const PostPreview = createClass({
-      componentDidUpdate(){
-        const script = document.createElement('script')
-        script.src = ''
-        document.head.appendChild(script)
-      },
       render: function () {
         const entry = this.props.entry;
-        let entryArr = [...entry];
-        const image = entry.getIn(['data', 'image']);
-        const bg = this.props.getAsset(image);
-        
+        const entryData = entry.getIn(["data"]).toJS()
+        // console.log('💜entryData:', entryData);
         
         let title = entry.getIn(['data', 'title']);
-        let imageAlt = 'hohoho'
-        let body = h('div', {"className": "text"}, this.props.widgetFor('body'));
-        // console.log('body...:', entry.getIn(["data"]).toJS().body);
-        
-        
-
-         let htmlBfBody = `<main>
-   <article class="main-article">
-      <div class="container container--narrow flow">
-
-         <h1 class="article-title">
-            ${title}
-         </h1>
-         <figure class="main-article__figure">
-            <img src="${image}" alt="${imageAlt}">
-            <figcaption>`
+        const image = entry.getIn(['data', 'image']);
+        let imageAlt = entry.getIn(['data', 'imageAlt']);
+        let body = h('div', { "className": "text" }, this.props.widgetFor('body'));
 
         let bodyMarkdown = entry.getIn(["data"]).toJS().body;
         const bodyHtml = converter.makeHtml(bodyMarkdown);
-        console.log('🍑:', bodyHtml);
 
-        let htmlAfBody = `</figcaption>
-         </figure>
+        let htmlBfBody =
+          `<main>
+            <article class="main-article">
+              <div class="container container--narrow flow">
 
-      </div>
-   </article>
-</main>`
+              <h1 class="article-title">
+                ${title}
+              </h1>
+              <figure class="main-article__figure">
+                <img src="${image}" alt="${imageAlt}">
+              <figcaption>`
+
+        let htmlAfBody = 
+                  `</figcaption>
+                </figure>
+
+              </div>
+            </article>
+          </main>`
+
         return h('div', {
-          dangerouslySetInnerHTML: { __html: htmlBfBody+bodyHtml+htmlAfBody },
+          dangerouslySetInnerHTML: { __html: htmlBfBody + bodyHtml + htmlAfBody },
         })
       }
     });
