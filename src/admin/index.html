@@ -17,43 +17,60 @@
   <script>
     CMS.registerPreviewStyle("./cms/example.css");
     const converter = new showdown.Converter()
+    const articleNJK = `<main>
+   <article class="main-article">
+      <div class="container container--narrow flow">
+
+         <h1 class="article-title">
+            {{ title }}
+         </h1>
+         <h3>
+          {{ author }} 
+         </h3>
+         <figure class="main-article__figure">
+            {% imageShortCode image, imageAlt %}
+            <figcaption>
+               {{ content | safe }}
+            </figcaption>
+         </figure>
+
+      </div>
+   </article>
+</main>`
+
+    const imgRegex = /\{%[^)]*\%}/gm;
+    const bodyRegex = /\{\{ content \| safe \}\}/gm;
+    const doubleBracket = /\{\{[^{}]*\}\}/gm;
 
     const PostPreview = createClass({
       render: function () {
         const entry = this.props.entry;
         const entryData = entry.getIn(["data"]).toJS()
-        // console.log('💜entryData:', entryData);
-        
+        console.log('💜entryData:', entryData);
+
         let title = entry.getIn(['data', 'title']);
+        let author = entry.getIn(['data', 'author']);        
         const image = entry.getIn(['data', 'image']);
         let imageAlt = entry.getIn(['data', 'imageAlt']);
         let body = h('div', { "className": "text" }, this.props.widgetFor('body'));
 
         let bodyMarkdown = entry.getIn(["data"]).toJS().body;
         const bodyHtml = converter.makeHtml(bodyMarkdown);
+        console.log('bodyHtml...:', bodyHtml);
+        
+        let modifiedNJK = articleNJK.replace(imgRegex, `<img src="${image}" alt="${imageAlt}">`)
+          .replace(bodyRegex, bodyHtml)
+          .replaceAll(doubleBracket, replacer)
 
-        let htmlBfBody =
-          `<main>
-            <article class="main-article">
-              <div class="container container--narrow flow">
+        function replacer(match){
+          match = match.trim()
+          let str = match.substring(2, match.length-2).trim();
+          
+          return entryData[str]
+        }
 
-              <h1 class="article-title">
-                ${title}
-              </h1>
-              <figure class="main-article__figure">
-                <img src="${image}" alt="${imageAlt}">
-              <figcaption>`
-
-        let htmlAfBody = 
-                  `</figcaption>
-                </figure>
-
-              </div>
-            </article>
-          </main>`
-
-        return h('div', {
-          dangerouslySetInnerHTML: { __html: htmlBfBody + bodyHtml + htmlAfBody },
+          return h('div', {
+          dangerouslySetInnerHTML: { __html: modifiedNJK}
         })
       }
     });
