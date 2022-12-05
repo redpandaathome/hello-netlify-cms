@@ -46,8 +46,9 @@
       render: function () {
         const entry = this.props.entry;
         const entryData = entry.getIn(["data"]).toJS()
-        console.log('💜entryData:', entryData);
+        // console.log('💜entryData:', entryData);
 
+        //Declare necessary field items
         let title = entry.getIn(['data', 'title']);
         let author = entry.getIn(['data', 'author']);        
         const image = entry.getIn(['data', 'image']);
@@ -56,11 +57,11 @@
 
         let bodyMarkdown = entry.getIn(["data"]).toJS().body;
         const bodyHtml = converter.makeHtml(bodyMarkdown);
-        console.log('bodyHtml...:', bodyHtml);
         
-        let modifiedNJK = articleNJK.replace(imgRegex, `<img src="${image}" alt="${imageAlt}">`)
+        let modifiedNJK = articleNJK
+          .replace(imgRegex, `<img src="${image}" alt="${imageAlt}">`)
           .replace(bodyRegex, bodyHtml)
-          .replaceAll(doubleBracket, replacer)
+          .replaceAll(doubleBracket, replacer);
 
         function replacer(match){
           match = match.trim()
